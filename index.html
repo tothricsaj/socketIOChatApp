@@ -27,6 +27,10 @@
             e.preventDefault()
             socket.emit('chat message', document.querySelector('#m').value)
         })
+
+        socket.on('chat message', (msg) => {
+            document.querySelector('#messages').insertAdjacentHTML('beforeend', `<li>${msg}</li>`)
+        })
     </script>
 </body>
 </html>

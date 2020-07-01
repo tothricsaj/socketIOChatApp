@@ -22,9 +22,10 @@
         form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
         form input { border: 0; padding: 10px; width: 90%; margin-right: 0.5%; }
         form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; cursor: pointer; }
-        #messages { list-style-type: none; margin: 0; padding: 0; }
+        #messages { list-style-type: none; margin: 20px 0 0 0; padding: 0; border-top: 1px solid black;}
         #messages li { padding: 5px 10px; }
         #messages li:nth-child(odd) { background: #eee; }
+        .nameTag {color: orangered; font-weight: bold;}
     </style>
     <title>Exploring SocketIO</title>
 </head>
@@ -35,6 +36,7 @@
         <div class="addNameBtn">Add ninckname</div>
         <p class="nameMsg" style="color: orange;;font-size: 20px;font-weight: bold;"></p>
     </div>
+    <h2 class="nickNameTitle"></h2>
     <ul id="messages"></ul>
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
@@ -53,18 +55,30 @@
                 nameMsg.textContent = 'Add your nickname!'
             } else {
                 nickName = nameInput.value
-                document.querySelector()
+                document.querySelector('.nickNameTitle').textContent = `You are: ${nickName}`
+                socket.emit('chat message', `${nickName} is connected`)
+                document.querySelector('#addNameWrapper').remove()
             }
         })
 
         document.querySelector('form').addEventListener('submit', (e) => {
             e.preventDefault()
-            socket.emit('chat message', document.querySelector('#m').value)
+
+            let usrMsg = document.querySelector('#m').value
+            let sendToServer = {
+                nickName: nickName,
+                usrMsg: usrMsg
+            }
+            socket.emit('chat message', sendToServer)
         })
 
-        socket.on('chat message', (msg) => {
-            document.querySelector('#messages').insertAdjacentHTML('beforeend', `<li>${msg}</li>`)
+        socket.on('chat message', (msgObj) => {
+            let name = msgObj.nickName
+            let msg = msgObj.usrMsg
+            document.querySelector('#messages').insertAdjacentHTML('beforeend', `<li><span class="nameTag">${name}</span> -> ${msg}</li>`)
         })
+
+        // socket.on('disconnect', () => socket.emit('chat message', `${nickName} left us...`))
     </script>
 </body>
 </html>

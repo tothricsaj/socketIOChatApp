@@ -8,9 +8,11 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
     
-    io.emit('chat message', 'A user connected!')
+    // io.emit('chat message', 'A user connected!')
 
-    socket.on('disconnect', () => io.emit('chat message', 'a user disconnected!!!!'))
+    socket.on('disconnect', (reason) => {
+        io.emit('chat message', `a user disconnected!!!!`)
+    })
     socket.on('chat message', (msg) => {
         io.emit('chat message', msg)
     })

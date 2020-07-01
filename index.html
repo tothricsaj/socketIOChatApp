@@ -74,6 +74,8 @@
                 usrMsg: usrMsg
             }
             socket.emit('chat message', sendToServer)
+
+            document.querySelector('#m').value = ''
         })
 
         socket.on('chat message', (msgObj) => {

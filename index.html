@@ -33,6 +33,7 @@
         <h2>Add your nickname</h2>
         <input type="text" name="nickname" >
         <div class="addNameBtn">Add ninckname</div>
+        <p class="nameMsg" style="color: orange;;font-size: 20px;font-weight: bold;"></p>
     </div>
     <ul id="messages"></ul>
     <form action="">
@@ -42,6 +43,19 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
         var socket = io();
+        let nickName
+
+        document.querySelector('.addNameBtn').addEventListener('click', (e) => {
+            let nameInput = document.querySelector('#addNameWrapper input')
+            let nameMsg = document.querySelector('.nameMsg')
+
+            if(!nameInput.value.length) {
+                nameMsg.textContent = 'Add your nickname!'
+            } else {
+                nickName = nameInput.value
+                document.querySelector()
+            }
+        })
 
         document.querySelector('form').addEventListener('submit', (e) => {
             e.preventDefault()

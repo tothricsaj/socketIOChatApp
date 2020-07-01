@@ -7,9 +7,10 @@ app.get('/', (req, res) => {
 })
 
 io.on('connection', (socket) => {
-    console.log('a user connected')
+    
+    io.emit('chat message', 'A user connected!')
 
-    socket.on('disconnect', () => console.log('user disconnected'))
+    socket.on('disconnect', () => io.emit('chat message', 'a user disconnected!!!!'))
     socket.on('chat message', (msg) => {
         io.emit('chat message', msg)
     })

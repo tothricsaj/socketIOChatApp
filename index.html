@@ -55,8 +55,12 @@
                 nameMsg.textContent = 'Add your nickname!'
             } else {
                 nickName = nameInput.value
+                let sendToServer = {
+                    nickName: nickName,
+                    usrMsg: 'is connected'
+                }
                 document.querySelector('.nickNameTitle').textContent = `You are: ${nickName}`
-                socket.emit('chat message', `${nickName} is connected`)
+                socket.emit('chat message', sendToServer)
                 document.querySelector('#addNameWrapper').remove()
             }
         })

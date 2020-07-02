@@ -5,7 +5,7 @@ const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 
 
-let participants = []
+let participants = new Set()
 
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -26,8 +26,8 @@ io.on('connection', (socket) => {
     })
 
     socket.on('participants', (name) => {
-        participants.push(name)
-        io.emit('participants', participants)
+        participants.add(name)
+        io.emit('participants', [...participants])
     })
 })
 

@@ -66,12 +66,8 @@
 
         socket.on('participants', (names) => {
             let participantsList = document.querySelector('.participantsList')
-            console.log(!document.querySelector('.participantsList').childElementCount)
-            if(!document.querySelector('.participantsList').childElementCount) {
-                names.forEach(name => participantsList.insertAdjacentHTML('beforeend', `<li>${name}</li>`))
-            } else {
-                participantsList.insertAdjacentHTML('beforeend', `<li>${names[names.length-1]}</li>`)
-            }
+            participantsList.innerHTML = ''
+            names.forEach(name => participantsList.insertAdjacentHTML('beforeend', `<li>${name}</li>`))
             
         })
 

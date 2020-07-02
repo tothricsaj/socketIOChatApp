@@ -32,4 +32,4 @@ form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 
 #messages { width: 80vw; list-style-type: none; margin: 20px 0 0 0; padding: 0; border-top: 1px solid black;}
 #messages li { padding: 5px 10px; }
 #messages li:nth-child(odd) { background: #eee; }
-.nameTag {color: orangered; font-weight: bold;}
+.nameTag {font-weight: bold;}

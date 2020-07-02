@@ -25,18 +25,25 @@
     <script>
         var socket = io();
         let nickName
+        let color
 
         document.querySelector('.addNameBtn').addEventListener('click', (e) => {
             let nameInput = document.querySelector('#addNameWrapper input')
             let nameMsg = document.querySelector('.nameMsg')
 
+            function colorMaker() {
+                return `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`
+            }
+
             if(!nameInput.value.length) {
                 nameMsg.textContent = 'Add your nickname!'
             } else {
                 nickName = nameInput.value
+                color = colorMaker()
                 let sendToServer = {
                     nickName: nickName,
-                    usrMsg: 'is connected'
+                    usrMsg: 'is connected',
+                    color: color
                 }
                 document.querySelector('.nickNameTitle').textContent = `You are: ${nickName}`
                 socket.emit('chat message', sendToServer)
@@ -51,7 +58,8 @@
             let usrMsg = document.querySelector('#m').value
             let sendToServer = {
                 nickName: nickName,
-                usrMsg: usrMsg
+                usrMsg: usrMsg,
+                color: color
             }
             socket.emit('chat message', sendToServer)
 
@@ -61,7 +69,8 @@
         socket.on('chat message', (msgObj) => {
             let name = msgObj.nickName
             let msg = msgObj.usrMsg
-            document.querySelector('#messages').insertAdjacentHTML('beforeend', `<li><span class="nameTag">${name}</span> -> ${msg}</li>`)
+            let color = msgObj.color
+            document.querySelector('#messages').insertAdjacentHTML('beforeend', `<li><span style="color: ${color}" class="nameTag">${name}</span> -> ${msg}</li>`)
         })
 
         socket.on('participants', (names) => {

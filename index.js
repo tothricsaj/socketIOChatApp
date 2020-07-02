@@ -29,6 +29,10 @@ io.on('connection', (socket) => {
         participants.add(name)
         io.emit('participants', [...participants])
     })
+
+    socket.on('typingListener', (typer) => {
+        io.emit(typer)
+    })
 })
 
 http.listen(3000, () => console.log('listening on *:3000'))

@@ -66,6 +66,10 @@
             document.querySelector('#m').value = ''
         })
 
+        document.querySelector('#m').addEventListener('input', (e) => {
+            socket.emit('typingListener', `${nickName} is typing....`)
+        })
+
         socket.on('chat message', (msgObj) => {
             let name = msgObj.nickName
             let msg = msgObj.usrMsg
@@ -79,6 +83,8 @@
             names.forEach(name => participantsList.insertAdjacentHTML('beforeend', `<li>${name}</li>`))
             
         })
+
+        socket.on('typingListener', (typer) => document.querySelector('#messages').insertAdjacentHTML('beforeend', `<li>${typer}</li>`))
 
         // socket.on('disconnect', () => socket.emit('chat message', `${nickName} left us...`))
     </script>

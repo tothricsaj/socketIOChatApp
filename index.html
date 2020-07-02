@@ -40,6 +40,7 @@
                 }
                 document.querySelector('.nickNameTitle').textContent = `You are: ${nickName}`
                 socket.emit('chat message', sendToServer)
+                socket.emit('participants', nickName)
                 document.querySelector('#addNameWrapper').remove()
             }
         })
@@ -61,6 +62,17 @@
             let name = msgObj.nickName
             let msg = msgObj.usrMsg
             document.querySelector('#messages').insertAdjacentHTML('beforeend', `<li><span class="nameTag">${name}</span> -> ${msg}</li>`)
+        })
+
+        socket.on('participants', (names) => {
+            let participantsList = document.querySelector('.participantsList')
+            console.log(!document.querySelector('.participantsList').childElementCount)
+            if(!document.querySelector('.participantsList').childElementCount) {
+                names.forEach(name => participantsList.insertAdjacentHTML('beforeend', `<li>${name}</li>`))
+            } else {
+                participantsList.insertAdjacentHTML('beforeend', `<li>${names[names.length-1]}</li>`)
+            }
+            
         })
 
         // socket.on('disconnect', () => socket.emit('chat message', `${nickName} left us...`))

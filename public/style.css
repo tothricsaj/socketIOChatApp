@@ -15,7 +15,7 @@ body { font: 13px Helvetica, Arial; }
 }
 
 .participantsWrapper {
-    width: 200px;
+    width: calc(20vw - 15px);
     height: 300px;
     position: fixed;
     top: 0;

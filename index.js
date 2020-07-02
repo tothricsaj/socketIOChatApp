@@ -4,6 +4,9 @@ const app = require('express')()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 
+
+let participants = []
+
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', (req, res) => {
@@ -17,8 +20,14 @@ io.on('connection', (socket) => {
     socket.on('disconnect', (reason) => {
         io.emit('chat message', `a user disconnected!!!!`)
     })
+
     socket.on('chat message', (msg) => {
         io.emit('chat message', msg)
+    })
+
+    socket.on('participants', (name) => {
+        participants.push(name)
+        io.emit('participants', participants)
     })
 })
 

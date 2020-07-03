@@ -89,16 +89,25 @@
 
             return function(typer) {
                 let caughtName = typer.split(' ')[0]
+                let typerParagraph = document.querySelector(`.${caughtName}Typer`) || null
+
                 if(!(caughtName === nickName) && !usrTypedEver) {
                     let p = document.createElement('p')
                     let msgForm = document.querySelector('form')
 
+                    p.className = `${caughtName}Typer`
                     p.textContent = typer
 
                     document.body.insertBefore(p, msgForm)
 
+                    // typerParagraph = p
+
                     usrTypedEver = true
+                } else {
+                    typerParagraph.style.display = 'block'
                 }
+
+                if(typerParagraph) typerParagraph.style.display = 'none'
             }
         }
 

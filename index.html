@@ -84,7 +84,9 @@
             
         })
 
-        socket.on('typingListener', (typer) => document.querySelector('#messages').insertAdjacentHTML('beforeend', `<li>${typer}</li>`))
+        socket.on('typingListener', (typer) => {
+            document.querySelector('#messages').insertAdjacentHTML('beforeend', `<li>${typer}</li>`)
+        })
 
         // socket.on('disconnect', () => socket.emit('chat message', `${nickName} left us...`))
     </script>

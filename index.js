@@ -31,7 +31,7 @@ io.on('connection', (socket) => {
     })
 
     socket.on('typingListener', (typer) => {
-        io.emit(typer)
+        io.emit('typingListener', typer)
     })
 })
 

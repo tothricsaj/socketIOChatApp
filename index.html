@@ -84,10 +84,33 @@
             
         })
 
+        function typeCheck() {
+            let usrTypedEver = false
+
+            return function(typer) {
+                let caughtName = typer.split(' ')[0]
+                if(!(caughtName === nickName) && !usrTypedEver) {
+                    let p = document.createElement('p')
+                    let msgForm = document.querySelector('form')
+
+                    p.textContent = typer
+
+                    document.body.insertBefore(p, msgForm)
+
+                    usrTypedEver = true
+                }
+            }
+        }
+
+        let typChk = typeCheck()
+
         socket.on('typingListener', (typer) => {
-            typer.split(' ')[0] === nickName
-            ? null
-            : document.querySelector('#messages').insertAdjacentHTML('beforeend', `<li>${typer}</li>`)
+
+            typChk(typer)
+
+            // typer.split(' ')[0] === nickName
+            // ? null
+            // : document.querySelector('#messages').insertAdjacentHTML('beforeend', `<li>${typer}</li>`)
         })
 
         // socket.on('disconnect', () => socket.emit('chat message', `${nickName} left us...`))

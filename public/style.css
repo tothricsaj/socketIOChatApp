@@ -18,8 +18,9 @@ body { font: 13px Helvetica, Arial; }
     width: 100vw;
     height: 100vh;
     display: grid;
-    grid-template-columns: 2fr;
+    grid-template-columns: 2fr 20vw;
     grid-template-rows: 3fr;
+    column-gap: 15px;
 }
 
 .nickNameTitle {
@@ -33,7 +34,7 @@ body { font: 13px Helvetica, Arial; }
 
 
 .participantsWrapper {
-    width: calc(20vw - 15px);
+    width: 20vw;
     grid-row-start: 1;
     border: 1px solid;
     overflow-y: auto;

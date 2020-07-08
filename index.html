@@ -11,16 +11,18 @@
         <div class="addNameBtn">Add ninckname</div>
         <p class="nameMsg" style="color: orange;;font-size: 20px;font-weight: bold;"></p>
     </div>
-    <h2 class="nickNameTitle"></h2>
-    <div class="participantsWrapper">
-        <h3 class="participantsTitle">Participants</h3>
-        <ul class="participantsList"></ul>
+    <div class="appWrapper">
+        <h2 class="nickNameTitle"></h2>
+        <div class="participantsWrapper">
+            <h3 class="participantsTitle">Participants</h3>
+            <ul class="participantsList"></ul>
+        </div>
+        <ul id="messages"></ul>
+        <form action="">
+        <input id="m" autocomplete="off" /><button>Send</button>
+        </form>
     </div>
-    <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
-
+    
     <script src="/socket.io/socket.io.js"></script>
     <script>
         var socket = io();

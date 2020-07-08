@@ -14,12 +14,27 @@ body { font: 13px Helvetica, Arial; }
     background-color: lightseagreen;
 }
 
+.appWrapper {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 2fr;
+    grid-template-rows: 3fr;
+}
+
+.nickNameTitle {
+    width: 100%;
+    height: 50px;
+    border: 2px solid;
+    grid-row-start: 1;
+    grid-column-start: 1;
+}
+
+
+
 .participantsWrapper {
     width: calc(20vw - 15px);
-    height: 300px;
-    position: fixed;
-    top: 0;
-    right: 0;
+    grid-row-start: 1;
     border: 1px solid;
     overflow-y: auto;
 }
@@ -29,7 +44,16 @@ body { font: 13px Helvetica, Arial; }
 form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
 form input { border: 0; padding: 10px; width: 90%; margin-right: 0.5%; }
 form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; cursor: pointer; }
-#messages { width: 80vw; list-style-type: none; margin: 20px 0 0 0; padding: 0; border-top: 1px solid black;}
+
+#messages {
+    list-style-type: none;
+    margin: 50px 0 0 0;
+    padding: 0;
+    border-top: 1px solid black;
+    grid-row-start: 1;
+    grid-column-start: 1;
+}
+
 #messages li { padding: 5px 10px; }
 #messages li:nth-child(odd) { background: #eee; }
 .nameTag {font-weight: bold;}

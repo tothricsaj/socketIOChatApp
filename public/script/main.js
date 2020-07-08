@@ -80,13 +80,12 @@ function typeCheck() {
 
             usrTypedEver = true
         } else {
-            // typerParagraph.style.display = 'block'
+            typerParagraph.style.display = 'block'
         }
 
-        // setTimeout(() => {
-        //     if(typerParagraph) typerParagraph.style.display = 'none'
-        // }, 500)
-
+        setTimeout(() => {
+            if(typerParagraph) typerParagraph.style.display = 'none'
+        }, 500)
     }
 }
 

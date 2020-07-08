@@ -15,11 +15,13 @@ document.querySelector('.addNameBtn').addEventListener('click', (e) => {
     } else {
         nickName = nameInput.value
         color = colorMaker()
+
         let sendToServer = {
             nickName: nickName,
             usrMsg: 'is connected',
             color: color
         }
+
         document.querySelector('.nickNameTitle').textContent = `You are: ${nickName}`
         socket.emit('chat message', sendToServer)
         socket.emit('participants', nickName)
@@ -67,21 +69,24 @@ function typeCheck() {
 
         if(!(caughtName === nickName) && !usrTypedEver) {
             let p = document.createElement('p')
-            let msgForm = document.querySelector('form')
+            let showTypers = document.querySelector('.showTypers')
 
             p.className = `${caughtName}Typer`
             p.textContent = typer
 
-            document.body.insertBefore(p, msgForm)
+            showTypers.insertAdjacentElement('afterbegin', p)
 
             // typerParagraph = p
 
             usrTypedEver = true
         } else {
-            typerParagraph.style.display = 'block'
+            // typerParagraph.style.display = 'block'
         }
 
-        if(typerParagraph) typerParagraph.style.display = 'none'
+        // setTimeout(() => {
+        //     if(typerParagraph) typerParagraph.style.display = 'none'
+        // }, 500)
+
     }
 }
 

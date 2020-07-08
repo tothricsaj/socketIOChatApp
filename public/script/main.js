@@ -76,8 +76,6 @@ function typeCheck() {
 
             showTypers.insertAdjacentElement('afterbegin', p)
 
-            // typerParagraph = p
-
             usrTypedEver = true
         } else {
             typerParagraph.style.display = 'block'
@@ -91,14 +89,5 @@ function typeCheck() {
 
 let typChk = typeCheck()
 
-socket.on('typingListener', (typer) => {
-
-    typChk(typer)
-
-    // typer.split(' ')[0] === nickName
-    // ? null
-    // : document.querySelector('#messages').insertAdjacentHTML('beforeend', `<li>${typer}</li>`)
-
-    // socket.on('disconnect', () => socket.emit('chat message', `${nickName} left us...`))
-})
+socket.on('typingListener', (typer) => {typChk(typer)})
 

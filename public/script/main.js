@@ -51,7 +51,11 @@ socket.on('chat message', (msgObj) => {
     let name = msgObj.nickName
     let msg = msgObj.usrMsg
     let color = msgObj.color
-    document.querySelector('#messages').insertAdjacentHTML('beforeend', `<li><span style="color: ${color}" class="nameTag">${name}</span> -> ${msg}</li>`)
+    let stringIntoDOM = typeof msgObj === 'string'
+        ? msgObj
+        : `<span style="color: ${color}" class="nameTag">${name}</span> -> ${msg}`
+
+    document.querySelector('#messages').insertAdjacentHTML('beforeend', `<li>${stringIntoDOM}</li>`)
 })
 
 socket.on('participants', (names) => {
@@ -90,4 +94,9 @@ function typeCheck() {
 let typChk = typeCheck()
 
 socket.on('typingListener', (typer) => {typChk(typer)})
+
+// TODO(tothricsaj): end it up!!!!
+socket.on('connect', () => {
+    console.log(socket.disconnected); // false
+});
 

@@ -61,13 +61,13 @@ socket.on('participants', (names) => {
 })
 
 function typeCheck() {
-    let usrTypedEver = false
+    let participants = {}
 
     return function(typer) {
         let caughtName = typer.split(' ')[0]
         let typerParagraph = document.querySelector(`.${caughtName}Typer`) || null
 
-        if(!(caughtName === nickName) && !usrTypedEver) {
+        if(caughtName !== nickName && !participants[caughtName]) {
             let p = document.createElement('p')
             let showTypers = document.querySelector('.showTypers')
 
@@ -76,8 +76,8 @@ function typeCheck() {
 
             showTypers.insertAdjacentElement('afterbegin', p)
 
-            usrTypedEver = true
-        } else {
+            participants[caughtName] = true
+        } else if(caughtName !== nickName) {
             typerParagraph.style.display = 'block'
         }
 
